@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/favoriteController');
+const validateFavorite = require('../middleware/validateFavorite');
+const validateId = require('../middleware/validateId');
+router.get('/', controller.getAll);
+router.get('/:id', validateId, controller.getOne);
+router.post('/', validateFavorite, controller.create);
+router.put('/:id', validateId, validateFavorite, controller.replace);
+router.delete('/:id', validateId, controller.remove);
+module.exports = router;

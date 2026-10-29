@@ -1,0 +1,10 @@
+{
+  "name": "pokemon-api-architecture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Undervisningsdemo: REST, CRUD, MVC, middleware og PokeAPI",
+  "main": "app.js",
+  "scripts": {"start": "node app.js", "test": "node --test"},
+  "engines": {"node": ">=18"},
+  "dependencies": {"express": "^4.21.2", "morgan": "^1.10.0", "axios": "^1.7.9"}
+}

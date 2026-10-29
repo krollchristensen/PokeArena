@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101329">
+  <title>PokéArena – Team builder</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar layout">
+    <a class="brand" href="/" aria-label="PokéArena forside"><span class="brandmark"><span></span></span><span>POKÉ<span class="brand-accent">ARENA</span></span></a>
+    <span class="top-caption">THE ULTIMATE TEAM BUILDER <span class="live-dot"></span></span>
+  </header>
+  <main class="layout">
+    <section class="hero">
+      <div class="eyebrow">POKÉMON TRAINER HQ <span class="slash">/</span> GEN I</div>
+      <h1>Build your <em>dream team.</em></h1>
+      <p>Find din næste Pokémon, undersøg dens stats, og sammensæt dit helt eget hold på seks.</p>
+      <form id="search-form" class="searchbox" autocomplete="off">
+        <label class="sr-only" for="search">Pokémon-navn eller ID</label>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <input id="search" name="search" value="pikachu" placeholder="Søg på navn eller ID…" maxlength="45" required>
+        <button class="btn btn-primary" type="submit" id="search-button">Find Pokémon <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="suggestions">PRØV: <button type="button" data-search="charizard">CHARIZARD</button><button type="button" data-search="gengar">GENGAR</button><button type="button" data-search="bulbasaur">BULBASAUR</button></div>
+    </section>
+    <div id="notification" class="notification" role="status" aria-live="polite" hidden></div>
+    <div class="columns">
+      <section class="result panel" aria-labelledby="result-heading">
+        <div class="panel-heading"><div><div class="section-kicker">01 / DISCOVER</div><h2 id="result-heading">Pokémon explorer</h2></div><span class="panel-hint">LIVE POKÉAPI DATA</span></div>
+        <div id="search-empty" class="empty-state">Søg efter en Pokémon for at se detaljer og stats.</div>
+        <div id="pokemon-detail" hidden>
+          <div class="pokemon-visual"><span class="pokemon-watermark" id="pokemon-watermark">025</span><img id="pokemon-image" alt="" decoding="async"><span class="visual-label">OFFICIAL ARTWORK</span></div>
+          <div class="pokemon-heading"><div><div class="pokemon-number" id="pokemon-id"></div><h3 id="pokemon-name"></h3></div><div class="type-list" id="pokemon-types"></div></div>
+          <div class="stats-header"><h4>BASE STATS</h4><span id="pokemon-total"></span></div>
+          <div id="pokemon-stats" class="stat-list"></div>
+          <button class="btn btn-primary add-button" type="button" id="add-button">Tilføj til mit team <span>+</span></button>
+        </div>
+      </section>
+      <section class="team panel" aria-labelledby="team-heading">
+        <div class="panel-heading"><div><div class="section-kicker">02 / YOUR SQUAD</div><h2 id="team-heading">Mit Pokémon-team</h2></div><span class="team-count" id="team-count">0 / 6</span></div>
+        <p class="team-intro">Hver plads tæller. Vælg dine seks favoritter, og giv dem et personligt notat.</p>
+        <div class="team-grid" id="team-grid"></div>
+        <div class="team-footer"><div><div class="footer-label">TEAM STATUS</div><strong id="team-status">Klar til at rekruttere</strong></div><span id="team-capacity">6 LEDIGE PLADSER</span></div>
+      </section>
+    </div>
+    <footer class="footer">POKÉARENA · BUILT WITH NODE.JS & EXPRESS <span>Data og billeder via PokeAPI · Pokémon tilhører de respektive rettighedshavere.</span></footer>
+  </main>
+  <dialog id="edit-dialog" class="dialog"><form id="edit-form"><h2>Redigér Pokémon</h2><p id="edit-name" class="muted"></p><label for="edit-note">Holdnote</label><textarea id="edit-note" maxlength="140" rows="3" placeholder="Skriv en kort note..."></textarea><div class="dialog-actions"><button type="button" id="cancel-edit" class="btn btn-ghost">Annuller</button><button type="submit" class="btn btn-primary">Gem ændring</button></div></form></dialog>
+</body>
+</html>
